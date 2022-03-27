@@ -62,7 +62,7 @@
                 }//end if
                 else {
                     http_response_code(405);
-                }//end else
+                }//end elseeee
     
                  break;
     
