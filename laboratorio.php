@@ -3,9 +3,9 @@
 
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-            if(isset($_GET['idr_laboratorio'])) {
+            if(isset($_GET['id_laboratorio'])) {
 
-                echo json_encode(r_laboratorio::getWhere($_GET['idr_laboratorio']));
+                echo json_encode(r_laboratorio::getWhere($_GET['id_laboratorio']));
 
             }else {
 
@@ -18,7 +18,7 @@
         case 'POST':
             $datos = json_decode(file_get_contents('php://input')); //json->array
             if ($datos != NULL) {
-                if (r_laboratorio::insert($datos->R_laboratorio_id, $datos->Condicion, $datos->Tipo, $datos->Fecha_inicio, $datos->Observaciones)) {
+                if (r_laboratorio::insert($datos->usuarios_id, $datos->Descriccion, $datos->Imagen)) {
                     http_response_code(200);
                 }//end if
                 else {
@@ -34,7 +34,7 @@
              case 'PUT':   
                 $datos = json_decode(file_get_contents('php://input')); //json->array
                 if ($datos != NULL) {
-                    if (r_laboratorio::update($datos->idcondicion, $datos->R_laboratorio_id, $datos->Condicion, $datos->Tipo, $datos->Fecha_inicio, $datos->Observaciones)) {
+                    if (r_laboratorio::update($datos->id_laboratorio,$datos->usuarios_id, $datos->Descriccion, $datos->Imagen)) {
                         http_response_code(200);
                     }//end if
                     else {
@@ -52,8 +52,8 @@
             
     
             case 'DELETE':
-                if(isset($_GET['idr_laboratorio'])) {
-                    if (r_laboratorio::delete($_GET['idr_laboratorio'])) {
+                if(isset($_GET['idlaboratorio'])) {
+                    if (r_laboratorio::delete($_GET['idlaboratorio'])) {
                         http_response_code(200);
                     }//end if
                     else {
